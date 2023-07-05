@@ -24,9 +24,9 @@ const ProductCreateForm = ({
     quantity,
     images,
     colors,
-    brands,
+    residents,
     color,
-    brand,
+    resident,
   } = values;
 
   return (
@@ -101,10 +101,10 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Brand</label>
-        <select name="brand" className="form-control" onChange={handleChange}>
+        <label>Resident</label>
+        <select name="resident" className="form-control" onChange={handleChange}>
           <option>Please select</option>
-          {brands.map((b) => (
+          {residents.map((b) => (
             <option key={b} value={b}>
               {b}
             </option>

@@ -28,7 +28,7 @@ const History = () => {
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Price</th>
-          <th scope="col">Brand</th>
+          <th scope="col">resident</th>
           <th scope="col">Color</th>
           <th scope="col">Count</th>
           <th scope="col">Shipping</th>
@@ -42,7 +42,7 @@ const History = () => {
               <b>{p.product.title}</b>
             </td>
             <td>{p.product.price}</td>
-            <td>{p.product.brand}</td>
+            <td>{p.product.resident}</td>
             <td>{p.color}</td>
             <td>{p.count}</td>
             <td>

@@ -23,7 +23,7 @@ const Invoice = ({ order }) => (
           <TableCell>Title</TableCell>
           <TableCell>Price</TableCell>
           <TableCell>Quantity</TableCell>
-          <TableCell>Brand</TableCell>
+          <TableCell>Resident</TableCell>
           <TableCell>Color</TableCell>
         </TableHeader>
       </Table>
@@ -33,7 +33,7 @@ const Invoice = ({ order }) => (
           <DataTableCell getContent={(x) => x.product.title} />
           <DataTableCell getContent={(x) => `$${x.product.price}`} />
           <DataTableCell getContent={(x) => x.count} />
-          <DataTableCell getContent={(x) => x.product.brand} />
+          <DataTableCell getContent={(x) => x.product.resident} />
           <DataTableCell getContent={(x) => x.product.color} />
         </TableBody>
       </Table>

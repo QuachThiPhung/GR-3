@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Tabs, Tooltip } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -11,6 +11,8 @@ import RatingModal from "../modal/RatingModal";
 import { showAverage } from "../../functions/rating";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
+import { addToWishlist } from "../../functions/user";
+import { toast } from "react-toastify";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -20,6 +22,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
     // redux
     const { user, cart } = useSelector((state) => ({ ...state }));
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { title, images, description, _id } = product;
 
@@ -56,6 +59,15 @@ const SingleProduct = ({ product, onStarClick, star }) => {
             });
         }
     };
+
+    const handleAddToWishlist = (e) => {
+        e.preventDefault();
+        addToWishlist(product._id, user.token).then((res) => {
+          console.log("ADDED TO WISHLIST", res.data);
+          toast.success("Added to wishlist");
+          navigate("/user/wishlist");
+        });
+      };
     return (
         <>
             <div className="col-md-7">
@@ -94,9 +106,9 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                                 Cart
                             </a>
                         </Tooltip>,
-                        <Link to="/">
+                        <a onClick={handleAddToWishlist}>
                             <HeartOutlined className="text-info" /> <br /> Add to Wishlist
-                        </Link>,
+                        </a>,
                         <RatingModal>
                             <StarRating
                                 name={_id}

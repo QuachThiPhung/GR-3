@@ -104,7 +104,7 @@ const ProductCardInCheckout = ({ p }) => {
         </td>
         <td>{p.title}</td>
         <td>${p.price}</td>
-        <td>{p.brand}</td>
+        <td>{p.resident}</td>
         <td>
           <select
             onChange={handleColorChange}

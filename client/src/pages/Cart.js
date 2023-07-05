@@ -25,6 +25,20 @@ const Cart = () => {
       .catch((err) => console.log("cart save err", err));
   };
 
+  const saveCashOrderToDb = () => {
+    // console.log("cart", JSON.stringify(cart, null, 4));
+    dispatch({
+      type: "COD",
+      payload: true,
+    });
+    userCart(cart, user.token)
+      .then((res) => {
+        console.log("CART POST RES", res);
+        if (res.data.ok) navigate("/checkout");
+      })
+      .catch((err) => console.log("cart save err", err));
+  };
+
   const showCartItems = () => (
     <table className="table table-bordered">
       <thead className="thead-light">
@@ -32,7 +46,7 @@ const Cart = () => {
           <th scope="col">Image</th>
           <th scope="col">Title</th>
           <th scope="col">Price</th>
-          <th scope="col">Brand</th>
+          <th scope="col">Resident</th>
           <th scope="col">Color</th>
           <th scope="col">Count</th>
           <th scope="col">Shipping</th>
@@ -75,6 +89,7 @@ const Cart = () => {
           Total: <b>${getTotal()}</b>
           <hr />
           {user ? (
+            <>
             <button
               onClick={saveOrderToDb}
               className="btn btn-sm btn-primary mt-2"
@@ -82,6 +97,15 @@ const Cart = () => {
             >
               Proceed to Checkout
             </button>
+            <br />
+            <button
+              onClick={saveCashOrderToDb}
+              className="btn btn-sm btn-warning mt-2"
+              disabled={!cart.length}
+            >
+              Pay Cash on Delivery
+            </button>
+          </>
           ) : (
             <button className="btn btn-sm btn-primary mt-2">
               <Link

@@ -27,14 +27,14 @@ const Shop = () => {
   const [star, setStar] = useState("");
   const [subs, setSubs] = useState([]);
   const [sub, setSub] = useState("");
-  const [brands, setBrands] = useState([
+  const [residents, setResidents] = useState([
     "Apple",
     "Samsung",
     "Microsoft",
     "Lenovo",
     "ASUS",
   ]);
-  const [brand, setBrand] = useState("");
+  const [resident, setResident] = useState("");
   const [colors, setColors] = useState([
     "Black",
     "Brown",
@@ -99,7 +99,7 @@ const Shop = () => {
     setPrice(value);
     setStar("");
     setSub("");
-    setBrand("");
+    setResident("");
     setColor("");
     setShipping("");
     setTimeout(() => {
@@ -135,7 +135,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setStar("");
     setSub("");
-    setBrand("");
+    setResident("");
     setColor("");
     setShipping("");
     // console.log(e.target.value);
@@ -167,7 +167,7 @@ const Shop = () => {
     setCategoryIds([]);
     setStar(num);
     setSub("");
-    setBrand("");
+    setResident("");
     setColor("");
     setShipping("");
     fetchProducts({ stars: num });
@@ -206,28 +206,28 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setBrand("");
+    setResident("");
     setColor("");
     setShipping("");
     fetchProducts({ sub });
   };
 
-  // 7. show products based on brand name
-  const showBrands = () =>
-    brands.map((b) => (
+  // 7. show products based on resident name
+  const showResidents = () =>
+    residents.map((b) => (
       <Radio
         key={b}
         value={b}
         name={b}
-        checked={b === brand}
-        onChange={handleBrand}
+        checked={b === resident}
+        onChange={handleResident}
         className="pb-1 pl-4 pr-4"
       >
         {b}
       </Radio>
     ));
 
-  const handleBrand = (e) => {
+  const handleResident = (e) => {
     setSub("");
     dispatch({
       type: "SEARCH_QUERY",
@@ -237,9 +237,9 @@ const Shop = () => {
     setCategoryIds([]);
     setStar("");
     setColor("");
-    setBrand(e.target.value);
+    setResident(e.target.value);
     setShipping("");
-    fetchProducts({ brand: e.target.value });
+    fetchProducts({ resident: e.target.value });
   };
 
   // 8. show products based on color
@@ -266,7 +266,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setBrand("");
+    setResident("");
     setColor(e.target.value);
     setShipping("");
     fetchProducts({ color: e.target.value });
@@ -304,7 +304,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setBrand("");
+    setResident("");
     setColor("");
     setShipping(e.target.value);
     fetchProducts({ shipping: e.target.value });
@@ -380,17 +380,17 @@ const Shop = () => {
               </div>
             </SubMenu>
 
-            {/* brands */}
+            {/* residents */}
             <SubMenu
               key="5"
               title={
                 <span className="h6">
-                  <DownSquareOutlined /> Brands
+                  <DownSquareOutlined /> Residents
                 </span>
               }
             >
               <div style={{ maringTop: "-10px" }} className="pr-5">
-                {showBrands()}
+                {showResidents()}
               </div>
             </SubMenu>
 
