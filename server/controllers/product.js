@@ -336,6 +336,6 @@ exports.searchFilters = async (req, res) => {
 
   if (resident) {
     console.log("resident ---> ", resident);
-    await handleresident(req, res, resident);
+    await handleResident(req, res, resident);
   }
 };

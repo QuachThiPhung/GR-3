@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchOutlined } from "@ant-design/icons";
+// import { DropdownButton, Dropdown } from "react-bootstrap";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,19 @@ const Search = () => {
   };
 
   const handleSubmit = (e) => {
+    if (e.keyCode && e.keyCode !== 13) return;
     e.preventDefault();
     navigate(`/shop?${text}`);
   };
 
   return (
     <form className="form-inline my-2 my-lg-0" onSubmit={handleSubmit}>
+      {/* <DropdownButton id="dropdown-basic-button" title={searchCategoryToggle}>
+        <Dropdown.Item onClick={() => setSearchCategoryToggle("All")}>All</Dropdown.Item>
+        {categories.map((category, id) => (
+          <Dropdown.Item key={id} onClick={() => setSearchCategoryToggle(category.name)}>{category.name}</Dropdown.Item>
+        ))}
+      </DropdownButton> */}
       <input
         onChange={handleChange}
         type="search"

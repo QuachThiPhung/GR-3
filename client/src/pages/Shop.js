@@ -28,19 +28,11 @@ const Shop = () => {
   const [subs, setSubs] = useState([]);
   const [sub, setSub] = useState("");
   const [residents, setResidents] = useState([
-    "Apple",
-    "Samsung",
-    "Microsoft",
-    "Lenovo",
-    "ASUS",
+    "Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"
   ]);
   const [resident, setResident] = useState("");
   const [colors, setColors] = useState([
-    "Black",
-    "Brown",
-    "Silver",
-    "White",
-    "Blue",
+    "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Gray", "Brown", "Cyan", "Navy"
   ]);
   const [color, setColor] = useState("");
   const [shipping, setShipping] = useState("");

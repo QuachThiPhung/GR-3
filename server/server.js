@@ -11,7 +11,7 @@ const app = express();
 
 // mongodb connection
 const connectDB = require("./config/db");
-connectDB();
+connectDB(process.env.MONGO_URI);
 
 // middlewares
 app.use(morgan("dev"));
