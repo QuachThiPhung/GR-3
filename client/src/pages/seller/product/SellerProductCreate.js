@@ -22,6 +22,7 @@ const initialState = {
   residents: ["Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"],
   color: "",
   resident: "",
+  creator: ""
 };
 
 const SellerProductCreate = () => {

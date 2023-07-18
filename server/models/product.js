@@ -58,16 +58,16 @@ const productSchema = new mongoose.Schema(
       type: String,
       enum: ["Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"],
     },
+    creator: {
+      type: ObjectId,
+      ref: "User",
+    },
     ratings: [
       {
         star: Number,
         postedBy: { type: ObjectId, ref: "User" },
       },
     ],
-    creator: {
-      type: ObjectId,
-      ref: "User",
-    }
   },
   { timestamps: true }
 );

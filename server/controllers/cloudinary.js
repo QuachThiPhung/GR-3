@@ -14,7 +14,7 @@ exports.upload = async (req, res) => {
   const { email } = req.user;
   const findUser = await User.findOne({ email }).exec();
   if (findUser.role === "admin") {
-    adminCheck(req, res, next);
+    // adminCheck(req, res, next);
     let result = await cloudinary.uploader.upload(req.body.image, {
       public_id: `${Date.now()}`,
       resource_type: "auto", // jpeg, png
@@ -24,7 +24,7 @@ exports.upload = async (req, res) => {
       url: result.secure_url,
     });
   } else if (findUser.role === "seller") {
-    sellerCheck(req, res, next);
+    // sellerCheck(req, res, next);
     let result = await cloudinary.uploader.upload(req.body.image, {
       public_id: `${Date.now()}`,
       resource_type: "auto", // jpeg, png

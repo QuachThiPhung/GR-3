@@ -8,11 +8,11 @@ exports.create = async (req, res) => {
   const { email } = req.user;
   const findUser = await User.findOne({ email }).exec();
   if (findUser.role === "admin") {
-    adminCheck(req, res);
+    // adminCheck(req, res);
     try {
-      console.log(req.body);
+      console.log(req.user._id);
       req.body.slug = slugify(req.body.title);
-      req.body.creator = req.user._id;
+      req.body.creator = findUser._id;
       const newProduct = await new Product(req.body).save();
       res.json(newProduct);
     } catch (err) {
@@ -24,11 +24,11 @@ exports.create = async (req, res) => {
       console.log("error 1")
     }
   } else if (findUser.role === "seller") {
-    sellerCheck(req, res);
+    // sellerCheck(req, res);
     try {
-      console.log(req.body);
+      console.log(findUser._id);
       req.body.slug = slugify(req.body.title);
-      req.body.creator = req.user._id;
+      req.body.creator = findUser._id;
       const newProduct = await new Product(req.body).save();
       res.json(newProduct);
     } catch (err) {
@@ -58,8 +58,10 @@ exports.listAll = async (req, res) => {
 };
 
 exports.listCurrentUserProducts = async (req, res) => {
-  const { _id } = req.user;
-  let products = await Product.find({ creator: _id })
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  console.log("121212", findUser.email);
+  let products = await Product.find({ creator: findUser._id })
     .limit(parseInt(req.params.count))
     .populate("category")
     .populate("subs")
@@ -69,8 +71,9 @@ exports.listCurrentUserProducts = async (req, res) => {
 };
 
 exports.remove = async (req, res) => {
-  const { role } = req.user;
-  if (role === "admin") {
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  if (findUser.role === "admin") {
     adminCheck(req, res);
     try {
       const deleted = await Product.findOneAndRemove({
@@ -81,7 +84,7 @@ exports.remove = async (req, res) => {
       console.log(err);
       return res.staus(400).send("Product delete failed");
     }
-  } else if (role === "seller") {
+  } else if (findUser.role === "seller") {
     sellerCheck (req, res);
     try {
       const deleted = await Product.findOneAndRemove({
@@ -109,9 +112,10 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const { role } = req.user;
-  if (role === "admin") {
-    adminCheck(req, res);
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  if (findUser.role === "admin") {
+    // adminCheck(req, res);
     try {
       if (req.body.title) {
         req.body.slug = slugify(req.body.title);
@@ -129,7 +133,7 @@ exports.update = async (req, res) => {
         err: err.message,
       });
     }
-  } else if (role === "seller") {
+  } else if (findUser.role === "seller") {
     try {
       if (req.body.title) {
         req.body.slug = slugify(req.body.title);

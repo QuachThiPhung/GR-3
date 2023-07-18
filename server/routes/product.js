@@ -27,7 +27,7 @@ router.get("/products/:count", listAll);
 router.delete("/product/:slug", authCheck, remove);
 router.get("/product/:slug", read);
 router.put("/product/:slug", authCheck, update);
-router.get("/products/current-user/:count", authCheck, sellerCheck, listCurrentUserProducts);
+router.get("/products-created/:count", authCheck, sellerCheck, listCurrentUserProducts);
 
 router.post("/products", list);
 
