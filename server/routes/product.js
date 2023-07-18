@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // middlewares
-const { authCheck, adminCheck } = require("../middlewares/auth");
+const { authCheck, sellerCheck } = require("../middlewares/auth");
 
 // controller
 const {
@@ -16,16 +16,18 @@ const {
     productStar,
     listRelated,
     searchFilters,
+    listCurrentUserProducts
   } = require("../controllers/product");
 
 // routes
-router.post("/product", authCheck, adminCheck, create);
+router.post("/product", authCheck, create);
 router.get("/products/total", productsCount);
 
 router.get("/products/:count", listAll);
-router.delete("/product/:slug", authCheck, adminCheck, remove);
+router.delete("/product/:slug", authCheck, remove);
 router.get("/product/:slug", read);
-router.put("/product/:slug", authCheck, adminCheck, update);
+router.put("/product/:slug", authCheck, update);
+router.get("/products/current-user/:count", authCheck, sellerCheck, listCurrentUserProducts);
 
 router.post("/products", list);
 

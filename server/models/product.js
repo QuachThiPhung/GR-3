@@ -64,6 +64,10 @@ const productSchema = new mongoose.Schema(
         postedBy: { type: ObjectId, ref: "User" },
       },
     ],
+    creator: {
+      type: ObjectId,
+      ref: "User",
+    }
   },
   { timestamps: true }
 );

@@ -1,19 +1,49 @@
 const Product = require("../models/product");
 const slugify = require("slugify");
 const User = require("../models/user");
+const { sellerCheck, adminCheck } = require("../middlewares/auth");
+
 
 exports.create = async (req, res) => {
-  try {
-    console.log(req.body);
-    req.body.slug = slugify(req.body.title);
-    const newProduct = await new Product(req.body).save();
-    res.json(newProduct);
-  } catch (err) {
-    console.log(err);
-    // res.status(400).send("Create product failed");
-    res.status(400).json({
-      err: err.message,
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  if (findUser.role === "admin") {
+    adminCheck(req, res);
+    try {
+      console.log(req.body);
+      req.body.slug = slugify(req.body.title);
+      req.body.creator = req.user._id;
+      const newProduct = await new Product(req.body).save();
+      res.json(newProduct);
+    } catch (err) {
+      console.log(err);
+      // res.status(400).send("Create product failed");
+      res.status(400).json({
+        err: err.message,
+      });
+      console.log("error 1")
+    }
+  } else if (findUser.role === "seller") {
+    sellerCheck(req, res);
+    try {
+      console.log(req.body);
+      req.body.slug = slugify(req.body.title);
+      req.body.creator = req.user._id;
+      const newProduct = await new Product(req.body).save();
+      res.json(newProduct);
+    } catch (err) {
+      console.log(err);
+      // res.status(400).send("Create product failed");
+      res.status(400).json({
+        err: err.message,
+      });
+      console.log("error 2")
+    }
+  } else {
+    res.status(403).json({
+      err: "Access denied.",
     });
+    console.log("error 3")
   }
 };
 
@@ -27,16 +57,47 @@ exports.listAll = async (req, res) => {
   res.json(products);
 };
 
+exports.listCurrentUserProducts = async (req, res) => {
+  const { _id } = req.user;
+  let products = await Product.find({ creator: _id })
+    .limit(parseInt(req.params.count))
+    .populate("category")
+    .populate("subs")
+    .sort([["createdAt", "desc"]])
+    .exec();
+  res.json(products);
+};
+
 exports.remove = async (req, res) => {
-  try {
-    const deleted = await Product.findOneAndRemove({
-      slug: req.params.slug,
-    }).exec();
-    res.json(deleted);
-  } catch (err) {
-    console.log(err);
-    return res.staus(400).send("Product delete failed");
+  const { role } = req.user;
+  if (role === "admin") {
+    adminCheck(req, res);
+    try {
+      const deleted = await Product.findOneAndRemove({
+        slug: req.params.slug,
+      }).exec();
+      res.json(deleted);
+    } catch (err) {
+      console.log(err);
+      return res.staus(400).send("Product delete failed");
+    }
+  } else if (role === "seller") {
+    sellerCheck (req, res);
+    try {
+      const deleted = await Product.findOneAndRemove({
+        slug: req.params.slug,
+      }).exec();
+      res.json(deleted);
+    } catch (err) {
+      console.log(err);
+      return res.staus(400).send("Product delete failed");
+    }
+  } else {
+    res.status(403).json({
+      err: "Access denied.",
+    });
   }
+  
 };
 
 exports.read = async (req, res) => {
@@ -48,21 +109,47 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  try {
-    if (req.body.title) {
-      req.body.slug = slugify(req.body.title);
+  const { role } = req.user;
+  if (role === "admin") {
+    adminCheck(req, res);
+    try {
+      if (req.body.title) {
+        req.body.slug = slugify(req.body.title);
+      }
+      const updated = await Product.findOneAndUpdate(
+        { slug: req.params.slug },
+        req.body,
+        { new: true }
+      ).exec();
+      res.json(updated);
+    } catch (err) {
+      console.log("PRODUCT UPDATE ERROR ----> ", err);
+      // return res.status(400).send("Product update failed");
+      res.status(400).json({
+        err: err.message,
+      });
     }
-    const updated = await Product.findOneAndUpdate(
-      { slug: req.params.slug },
-      req.body,
-      { new: true }
-    ).exec();
-    res.json(updated);
-  } catch (err) {
-    console.log("PRODUCT UPDATE ERROR ----> ", err);
-    // return res.status(400).send("Product update failed");
-    res.status(400).json({
-      err: err.message,
+  } else if (role === "seller") {
+    try {
+      if (req.body.title) {
+        req.body.slug = slugify(req.body.title);
+      }
+      const updated = await Product.findOneAndUpdate(
+        { slug: req.params.slug },
+        req.body,
+        { new: true }
+      ).exec();
+      res.json(updated);
+    } catch (err) {
+      console.log("PRODUCT UPDATE ERROR ----> ", err);
+      // return res.status(400).send("Product update failed");
+      res.status(400).json({
+        err: err.message,
+      });
+    }
+  } else {
+    res.status(403).json({
+      err: "Access denied.",
     });
   }
 };

@@ -37,8 +37,10 @@ const Login = ({ history }) => {
     } else {
       if (res.data.role === "admin") {
         navigate("/admin/dashboard");
+      } else if (res.data.role === "seller") {
+        navigate("/seller/dashboard"); 
       } else {
-        navigate("/user/history");
+        navigate("/");
       }
     }
   };

@@ -36,6 +36,10 @@ import SideDrawer from "./components/drawer/SideDrawer";
 import Checkout from "./pages/Checkout";
 import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
 import Payment from "./pages/Payment";
+import SellerRoute from "./components/routes/SellerRoute";
+import SellerDashboard from "./pages/seller/SellerDashboard";
+import SellerProductCreate from "./pages/seller/product/SellerProductCreate";
+import AllSellerProducts from "./pages/seller/product/AllSellerProducts";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -99,6 +103,10 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />}/>
           <Route path="/admin/coupon" element={<AdminRoute><CreateCouponPage /></AdminRoute>} />
           <Route path="/payment" element={<UserRoute><Payment /></UserRoute>} />
+          <Route path="/seller/product" element={<SellerRoute><SellerProductCreate /></SellerRoute>} />
+          <Route path="/seller/products" element={<SellerRoute><AllSellerProducts /></SellerRoute>} />
+          <Route path="/seller/product/:slug" element={<SellerRoute><ProductUpdate /></SellerRoute>} />
+          <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>} />
         </Routes>
       </BrowserRouter>
     </>
