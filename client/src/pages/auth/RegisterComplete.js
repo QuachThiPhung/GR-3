@@ -8,6 +8,7 @@ import { createOrUpdateUser } from "../../functions/auth";
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
   let dispatch = useDispatch();
 
@@ -44,9 +45,10 @@ const RegisterComplete = ({ history }) => {
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
         // redux store
-        console.log("user", user, "idTokenResult", idTokenResult);
-
-        createOrUpdateUser(idTokenResult.token)
+        
+        // console.log("user", user, "idTokenResult", idTokenResult);
+        console.log(role);
+        createOrUpdateUser(idTokenResult.token, role)
           .then((res) => {
             dispatch({
               type: "LOGGED_IN_USER",
@@ -54,10 +56,11 @@ const RegisterComplete = ({ history }) => {
                 name: res.data.name,
                 email: res.data.email,
                 token: idTokenResult.token,
-                role: res.data.role,
+                role: role,
                 _id: res.data._id,
               },
             });
+            console.log(res.data.role, "1212 \n", role);
           })
           .catch((err) => console.log(err));
         // redirect
@@ -81,6 +84,15 @@ const RegisterComplete = ({ history }) => {
         placeholder="Password"
         autoFocus
       />
+      <select
+        className="form-control"
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
+      >
+        <option value="">Select a role</option>
+        <option value="seller">Seller</option>
+        <option value="buyer">Buyer</option>
+      </select>
       <br />
       <button type="submit" className="btn btn-raised">
         Complete Registration
