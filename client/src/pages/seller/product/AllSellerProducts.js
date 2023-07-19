@@ -18,7 +18,7 @@ const AllSellerProducts = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    getProductsByCountCurrentUser(100)
+    getProductsByCountCurrentUser(100, user.token)
       .then((res) => {
         setProducts(res.data);
         setLoading(false);

@@ -58,8 +58,9 @@ exports.listAll = async (req, res) => {
 };
 
 exports.listCurrentUserProducts = async (req, res) => {
-  const { _id } = req.user;
-  let products = await Product.find({ creator: _id })
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  let products = await Product.find({ creator: findUser._id })
     .limit(parseInt(req.params.count))
     .populate("category")
     .populate("subs")
