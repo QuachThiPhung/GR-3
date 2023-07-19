@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
   if (findUser.role === "admin") {
     // adminCheck(req, res);
     try {
-      console.log(req.user._id);
+      // console.log(req.user._id);
       req.body.slug = slugify(req.body.title);
       req.body.creator = findUser._id;
       const newProduct = await new Product(req.body).save();
@@ -72,7 +72,7 @@ exports.remove = async (req, res) => {
   const { email } = req.user;
   const findUser = await User.findOne({ email }).exec();
   if (findUser.role === "admin") {
-    adminCheck(req, res);
+    // adminCheck(req, res);
     try {
       const deleted = await Product.findOneAndRemove({
         slug: req.params.slug,
@@ -83,7 +83,7 @@ exports.remove = async (req, res) => {
       return res.staus(400).send("Product delete failed");
     }
   } else if (findUser.role === "seller") {
-    sellerCheck (req, res);
+    // sellerCheck (req, res);
     try {
       const deleted = await Product.findOneAndRemove({
         slug: req.params.slug,
