@@ -18,6 +18,16 @@ export const getUserCart = async (authtoken) =>
     },
   });
 
+export const upgradeSeller = async (authtoken, name) => 
+  await axios.post(`${process.env.REACT_APP_API}/user/upgrade-seller`, 
+    { name },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+
 export const emptyUserCart = async (authtoken) =>
   await axios.delete(`${process.env.REACT_APP_API}/user/cart`, {
     headers: {

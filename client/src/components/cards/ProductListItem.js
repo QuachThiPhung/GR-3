@@ -11,6 +11,7 @@ const ProductListItems = ({ product }) => {
     resident,
     quantity,
     sold,
+    // creator
   } = product;
 
   return (
@@ -83,6 +84,13 @@ const ProductListItems = ({ product }) => {
           {sold}
         </span>
       </li>
+
+      {/* <li className="list-group-item">
+        Created By{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {product.creator.name}
+        </span>
+      </li> */}
     </ul>
   );
 };

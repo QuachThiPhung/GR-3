@@ -248,3 +248,16 @@ exports.createCashOrder = async (req, res) => {
   console.log("NEW ORDER SAVED", newOrder);
   res.json({ ok: true });
 };
+
+exports.upgradeSeller = async (req, res) => {
+  const userAddress = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { 
+      role: "seller",
+      name: req.body.name,
+    },
+    { new: true }
+  ).exec();
+
+  res.json({ ok: true });
+};

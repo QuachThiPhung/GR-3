@@ -40,6 +40,7 @@ import SellerRoute from "./components/routes/SellerRoute";
 import SellerDashboard from "./pages/seller/SellerDashboard";
 import SellerProductCreate from "./pages/seller/product/SellerProductCreate";
 import AllSellerProducts from "./pages/seller/product/AllSellerProducts";
+import UpgradeSeller from "./pages/user/UpgradeSeller";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -87,6 +88,7 @@ const App = () => {
           <Route path="/user/history" element={<UserRoute><History /></UserRoute>} />
           <Route path="/user/password" element={<UserRoute><Password /></UserRoute>} />
           <Route path="/user/wishlist" element={<UserRoute><Wishlist /></UserRoute>} />
+          <Route path="/user/upgrade-seller" element={<UserRoute><UpgradeSeller /></UserRoute>} />
           <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
           <Route path="/admin/category" element={<AdminRoute><CategoryCreate /></AdminRoute>} />
           <Route path="/admin/category/:slug" element={<AdminRoute><CategoryUpdate /></AdminRoute>} />

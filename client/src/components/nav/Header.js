@@ -108,15 +108,21 @@ const Header = () => {
               </Item>
             )}
 
+            {user && user.role === "buyer" && (
+              <Item>
+                <Link to="/user/upgrade-seller">Upgrade to Seller</Link>
+              </Item>
+            )}
+
             {user && user.role === "admin" && (
               <Item>
                 <Link to="/admin/dashboard">Dashboard</Link>
               </Item>
             )}
 
-            {user && user.role === "admin" && (
+            {user && user.role === "seller" && (
               <Item>
-                <Link to="/seller/dashboard">Dashboard</Link>
+                <Link to="/seller/dashboard">Seller Dashboard</Link>
               </Item>
             )}
             <Item icon={<LogoutOutlined />} onClick={logout}>
