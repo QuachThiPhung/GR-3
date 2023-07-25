@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getRelated } from "../functions/product";
 import ProductCard from "../components/cards/ProductCard";
+import Meta from "../components/Meta";
+import BreadCrumb from "../components/BreadCrumb";
 
 const Product = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -46,6 +48,9 @@ const Product = ({ match }) => {
   };
 
   return (
+    <>
+    <Meta title={"Products"} />
+    <BreadCrumb title="Products" />
     <div className="container-fluid">
       <div className="row pt-4">
         <SingleProduct
@@ -74,6 +79,7 @@ const Product = ({ match }) => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -41,6 +41,7 @@ import SellerDashboard from "./pages/seller/SellerDashboard";
 import SellerProductCreate from "./pages/seller/product/SellerProductCreate";
 import AllSellerProducts from "./pages/seller/product/AllSellerProducts";
 import UpgradeSeller from "./pages/user/UpgradeSeller";
+import Footer from "./components/nav/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -110,6 +111,7 @@ const App = () => {
           <Route path="/seller/product/:slug" element={<SellerRoute><ProductUpdate /></SellerRoute>} />
           <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

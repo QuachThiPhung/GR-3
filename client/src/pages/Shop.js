@@ -14,6 +14,8 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import Star from "../components/forms/Star";
+import Meta from "../components/Meta";
+import BreadCrumb from "../components/BreadCrumb";
 
 const { SubMenu, ItemGroup } = Menu;
 
@@ -303,6 +305,9 @@ const Shop = () => {
   };
 
   return (
+    <>
+    <Meta title={"Shop"}/>
+    <BreadCrumb title="Shop"/>
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-3 pt-2">
@@ -435,6 +440,7 @@ const Shop = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

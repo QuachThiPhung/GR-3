@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Tooltip } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import defaultIMG from "../../images/default.png";
@@ -6,11 +6,46 @@ import { Link } from "react-router-dom";
 import { showAverage } from "../../functions/rating";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
+import wish from "../../images/wish.svg";
+import addcart from "../../images/add-cart.svg";
+import view from "../../images/view.svg";
+import wishFilled from "../../images/wish-filled.svg";
+import ReactStars from "react-rating-stars-component";
+import { toast } from "react-toastify";
+import { addToWishlist, getWishlist } from "../../functions/user";
 
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
   const [tooltip, setTooltip] = useState("Click to add");
+  const [inWishList, setinWishList] = useState("false");
+
+  const checkWishList = async() => {
+    try {
+      const wishlist = await getWishlist(user.token);
+      const productId = product._id;
+      const inWishList = wishlist.some((wishlistProduct) => wishlistProduct._id === productId);
+
+      setinWishList(inWishList);
+    }
+    catch (error) {
+      console.error("Error fetching user's wishlist:", error);
+    }
+  }
+
+  useEffect(() => {
+    checkWishList();
+  }, []);
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(product._id, user.token).then((res) => {
+      console.log("ADDED TO WISHLIST", res.data);
+      toast.success("Added to wishlist");
+      setinWishList((inWishlist) => !inWishlist);
+    });
+  };
+
   // redux
   const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
@@ -46,16 +81,13 @@ const ProductCard = ({ product }) => {
       });
     }
   };
+
+  
   // destructure
-  const { images, title, description, slug } = product;
+  const { images, title, description, slug, category, price } = product;
   return (
     <>
-      {product && product.ratings && product.ratings.length > 0 ? (
-        showAverage(product)
-      ) : (
-        <div className="text-center pt-1 pb-3">No rating yet</div>
-      )}
-      <Card
+      {/* <Card
         cover={
           <img
             src={images && images.length ? images[0].url : defaultIMG}
@@ -79,6 +111,51 @@ const ProductCard = ({ product }) => {
           title={title}
           description={`${description && description.substring(0, 40)}...`}
         />
+      </Card> */}
+      <Card className="col-12" style={{ width: ""}}>
+        <Link to={`/product/${slug}`} className="product-card position-relative">
+          <div className="wishlist-icon position-absolute">
+            <button className="border-0 bg-transparent" onClick={handleAddToWishlist}>
+              <img src={inWishList ? wish : wishFilled} alt="wishlist" />
+            </button>
+          </div>
+          <div className="product-image">
+            {images && images.length >= 1 ? (
+              <img style={{ height: "150px", objectFit: "cover" }} src={images[0].url} className="img-fluid" alt="product image" />
+            ) : (
+              <img style={{ height: "150px", objectFit: "cover" }} src={defaultIMG} className="img-fluid" alt="product image" />
+            )}
+
+            {images && images.length >= 2 ? (
+              <img style={{ height: "150px", objectFit: "cover" }} src={images[1].url} className="img-fluid" alt="product image" />
+            ) : (
+              <img style={{ height: "150px", objectFit: "cover" }} src={defaultIMG} className="img-fluid" alt="product image" />
+            )}
+          </div>
+
+          <div className="product-details">
+            <h6 className="brand">{category && category.name}</h6>
+            <h5 className="product-title">
+              {title}
+            </h5>
+            {product && product.ratings && product.ratings.length > 0 ? (
+              showAverage(product)
+            ) : (
+              <div className="text-center pt-1 pb-3">No rating yet</div>
+            )}
+            <p className="price">${price}</p>
+            <div className="action-bar position-absolute">
+              <div className="d-flex flex-column gap-15">
+                <button className="border-0 bg-transparent">
+                  <img src={view} alt="view" />
+                </button>
+                <button className="border-0 bg-transparent" onClick={handleAddToCart}>
+                  <img src={addcart} alt="addcart" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </Link>
       </Card>
     </>
   );
