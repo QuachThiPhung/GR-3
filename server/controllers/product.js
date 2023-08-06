@@ -58,8 +58,9 @@ exports.listAll = async (req, res) => {
 };
 
 exports.listCurrentUserProducts = async (req, res) => {
-  const { _id } = req.user;
-  let products = await Product.find({ creator: _id })
+  const { email } = req.user;
+  const findUser = await User.findOne({ email }).exec();
+  let products = await Product.find({ creator: findUser._id })
     .limit(parseInt(req.params.count))
     .populate("category")
     .populate("subs")
@@ -161,7 +162,7 @@ exports.list = async (req, res) => {
     // createdAt/updatedAt, desc/asc, 3
     const { sort, order, page } = req.body;
     const currentPage = page || 1;
-    const perPage = 3; // 3
+    const perPage = 4; // 3
 
     const products = await Product.find({})
       .skip((currentPage - 1) * perPage)
@@ -225,7 +226,7 @@ exports.listRelated = async (req, res) => {
     _id: { $ne: product._id },
     category: product.category,
   })
-    .limit(3)
+    .limit(4)
     .populate("category")
     .populate("subs")
     .populate("ratings.postedBy")

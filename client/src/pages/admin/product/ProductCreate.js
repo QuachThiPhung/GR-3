@@ -7,7 +7,10 @@ import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
-
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Typography } from "@mui/material";
+import { Box } from "@material-ui/core";
 const initialState = {
   title: "",
   description: "",
@@ -41,6 +44,42 @@ const ProductCreate = () => {
     getCategories().then((c) => setValues({ ...values, categories: c.data }));
 
   const handleSubmit = (e) => {
+    if(!values.category){
+      toast.error(`Category not empty`);
+      return;
+    }
+    if(!values.title){
+      toast.error(`Title not empty`);
+      return;
+    }
+    if(!values.color){
+      toast.error(`Color not empty`);
+      return;
+    }
+    if(!values.description){
+      toast.error(`Description not empty`);
+      return;
+    }
+    if(!values.price){
+      toast.error(`Price not empty`);
+      return;
+    }
+    if(!values.quantity){
+      toast.error(`Quantity not empty`);
+      return;
+    }
+    if(!values.resident){
+      toast.error(`Resident not empty`);
+      return;
+    }
+    if(!values.shipping){
+      toast.error(`Shipping not empty`);
+      return;
+    }
+    if(!values.images || values.images.length === 0){
+      toast.error(`Images not empty`);
+      return;
+    }
     e.preventDefault();
     createProduct(values, user.token)
       .then((res) => {
@@ -60,19 +99,38 @@ const ProductCreate = () => {
     // console.log(e.target.name, " ----- ", e.target.value);
   };
 
+  const handleChangeColor = (e) => {
+    setValues({ ...values, color: e.target.value });
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
+  const handleChangeResident = (e) => {
+    setValues({ ...values, resident: e.target.value});
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
+  const handleChangeSub = (e) => {
+    setValues({ ...values, subs: e.target.value });
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
+  const handleChangeShipping= (e) => {
+    setValues({ ...values, shipping: e.target.value });
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
   const handleCatagoryChange = (e) => {
-    e.preventDefault();
-    console.log("CLICKED CATEGORY", e.target.value);
     setValues({ ...values, subs: [], category: e.target.value });
-    getCategorySubs(e.target.value).then((res) => {
-      console.log("SUB OPTIONS ON CATGORY CLICK", res);
-      setSubOptions(res.data);
-    });
-    setShowSub(true);
+    if(e.target.value){
+      getCategorySubs(e.target.value).then((res) => {
+        if(res.data){
+          setSubOptions(res.data);
+        }
+      });
+      setShowSub(true);
+    }
   };
 
   return (
-    <div className="container-fluid">
+
+    <>
+        {/* <div className="container-fluid">
       <div className="row">
         <div className="col-md-2">
           <AdminNav />
@@ -107,7 +165,39 @@ const ProductCreate = () => {
           />
         </div>
       </div>
-    </div>
+    </div> */}
+    <Box style={{width: "100%", display: "flex", minHeight: 800}}>
+        <Box style={{width: 230, minHeight: "100%"}}><AdminNav /></Box>
+        <Box style={{marginTop: 20, marginLeft: 50, width: 1500}}>
+              <Typography variant="h5" marginLeft={0} marginBottom={"10px"}>Add Product</Typography>
+        <Grid container xs={12} style={{width: "100%"}}>
+          <Grid xs={9}>
+            <ProductCreateForm
+              handleSubmit={handleSubmit}
+              handleChange={handleChange}
+              setValues={setValues}
+              values={values}
+              handleCatagoryChange={handleCatagoryChange}
+              subOptions={subOptions}
+              showSub={showSub}
+              handleChangeColor={handleChangeColor}
+              handleChangeResident={handleChangeResident}
+              handleChangeSub={handleChangeSub}
+              handleChangeShipping={handleChangeShipping}
+            />
+          </Grid>
+          <Grid xs={2} padding={3}>
+            <FileUpload 
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+          </Grid>
+        </Grid>
+        </Box>
+      </Box>
+
+    </>
   );
 };
 

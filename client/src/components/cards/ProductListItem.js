@@ -1,3 +1,4 @@
+import { Box, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,79 +12,80 @@ const ProductListItems = ({ product }) => {
     resident,
     quantity,
     sold,
+    // creator
   } = product;
 
   return (
-    <ul className="list-group">
-      <li className="list-group-item">
-        Price{" "}
-        <span className="label label-default label-pill pull-xs-right">
-          $ {price}
-        </span>
-      </li>
-
+    <Box>
       {category && (
-        <li className="list-group-item">
-          Category{" "}
+        <Typography >
+          <span style={{fontWeight: "bold", fontSize: 14}}>Category:{" "}</span>
           <Link
             to={`/category/${category.slug}`}
             className="label label-default label-pill pull-xs-right"
           >
             {category.name}
           </Link>
-        </li>
+        </Typography>
       )}
 
       {subs && (
-        <li className="list-group-item">
-          Sub Categories
+        <Typography>
+          <span style={{fontWeight: "bold", fontSize: 14}}>Sub Categories:{" "}</span>
           {subs.map((s) => (
             <Link
               key={s._id}
               to={`/sub/${s.slug}`}
               className="label label-default label-pill pull-xs-right"
             >
-              {s.name}
+              {s.name ? s.name : "---"}
             </Link>
           ))}
-        </li>
+        </Typography>
       )}
 
-      <li className="list-group-item">
-        Shipping{" "}
+      <Typography>
+      <span style={{fontWeight: "bold", fontSize: 14}}>Shipping: {" "}</span>
         <span className="label label-default label-pill pull-xs-right">
           {shipping}
         </span>
-      </li>
+      </Typography>
 
-      <li className="list-group-item">
-        Color{" "}
+      <Typography>
+      <span style={{fontWeight: "bold", fontSize: 14}}>Color: {" "}</span>
         <span className="label label-default label-pill pull-xs-right">
           {color}
         </span>
-      </li>
+      </Typography>
 
-      <li className="list-group-item">
-        Resident{" "}
+      <Typography>
+      <span style={{fontWeight: "bold", fontSize: 14}}>Resident: {" "}</span>
         <span className="label label-default label-pill pull-xs-right">
           {resident}
         </span>
-      </li>
+      </Typography>
 
-      <li className="list-group-item">
-        Available{" "}
+      <Typography>
+        <span style={{fontWeight: "bold", fontSize: 14}}>Available: {"  "}</span>
         <span className="label label-default label-pill pull-xs-right">
           {quantity}
         </span>
-      </li>
+      </Typography>
 
-      <li className="list-group-item">
-        Sold{" "}
+      <Typography>
+      <span style={{fontWeight: "bold", fontSize: 14}}>Sold: {"  "}</span>
         <span className="label label-default label-pill pull-xs-right">
           {sold}
         </span>
-      </li>
-    </ul>
+      </Typography>
+
+      {/* <li className="list-group-item">
+        Created By{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {product.creator.name}
+        </span>
+      </li> */}
+    </Box>
   );
 };
 

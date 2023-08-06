@@ -1,18 +1,29 @@
-import React from "react";
+import { Box, Button, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 import Jumbotron from "../components/cards/Jumbotron";
-import NewArrivals from "../components/home/NewArrivals";
 import BestSellers from "../components/home/BestSellers";
-import CategoryList from "../components/category/CategoryList";
-import SubList from "../components/sub/SubList";
-import { Link } from "react-router-dom";
-import defaultIMG from "../images/default.png";
-
+import CategoryCard from "../components/home/CategoryCard";
+import NewArrivals from "../components/home/NewArrivals";
+import Background from "../components/images/background.png";
+import Footer from "../components/nav/Footer";
+import Banner from "./Banner";
 const Home = () => {
+  const [category, setCategory] = useState();
   return (
     <>
-      <div className="jumbotron text-danger h1 font-weight-bold text-center">
+      <Box style={{width: "100%", margin: "auto"}}>
+      <Box style={{width: "100%" , margin: "auto", zIndex: 1}}>
+        <img style={{width: "100%", height: 700}} src={Background}/>
+        <Box style={{position: "absolute", zIndex: 100, marginTop: -600, marginLeft: 200}}>
+          <Typography style={{color: "#FFFFFF", fontSize: 50}}>Shopping And</Typography>
+          <Typography style={{color: "#FFFFFF", fontSize: 50}}>Department Store</Typography>
+          <Button style={{height: 50, borderRadius: 40, width: 140, color: "#FFFFFF", background: "#0088FF", marginLeft: 100}} onClick={() => {window.location.href = "/shop"}}>Learn More</Button>
+          </Box>
+      </Box>
+      <div className="jumbotron text-danger h1 font-weight-bold text-center" style={{zIndex: 100}}>
         <Jumbotron text={["Latest Products", "New Arrivals", "Best Sellers"]} />
       </div>
+      </Box>
 
       {/* <div class1="home-wrapper-1 container-xxl py-5">
         <div className="row">
@@ -93,29 +104,18 @@ const Home = () => {
           </div>
         </div>
       </div> */}
+      <Banner handleCategory={(category) => {setCategory(category)}}/>
+      <CategoryCard handleCategory={(category) => {setCategory(category)}} />
+      <NewArrivals category={category}/>
 
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
-        New Arrivals
-      </h4>
-      <NewArrivals />
-
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
-        Best Sellers
-      </h4>
       <BestSellers />
 
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
+      {/* <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
         Categories
       </h4>
-      <CategoryList />
+      <CategoryList /> */}
 
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
-        Sub Categories
-      </h4>
-      <SubList />
-
-      <br />
-      <br />
+      {/* <SubList /> */}
     </>
   );
 };

@@ -2,22 +2,23 @@ import React, { useState, useEffect } from "react";
 import { getOrders, changeStatus } from "../../functions/admin";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import Orders from "../../components/order/Orders";
 import SellerNav from "../../components/nav/SellerNav";
+import { Box } from "@material-ui/core";
+import { getProductsByCountCurrentUser } from "../../functions/seller";
 
 const SellerDashboard = () => {
-//   const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
 
-//   useEffect(() => {
-//     loadOrders();
-//   }, []);
+  useEffect(() => {
+    loadOrders();
+  }, []);
 
-//   const loadOrders = () =>
-//     getOrders(user.token).then((res) => {
-//       console.log(JSON.stringify(res.data, null, 4));
-//       setOrders(res.data);
-//     });
+  const loadOrders = () =>
+    getProductsByCountCurrentUser(100, user.token).then((res) => {
+      console.log(JSON.stringify(res.data, null, 4));
+      setOrders(res.data);
+    });
 
 //   const handleStatusChange = (orderId, orderStatus) => {
 //     changeStatus(orderId, orderStatus, user.token).then((res) => {
@@ -27,19 +28,14 @@ const SellerDashboard = () => {
 //   };
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-2">
-          <SellerNav />
-        </div>
-
-        <div className="col-md-10">
+    <Box style={{width: "100%", display: "flex", minHeight: 800}}>
+        <Box style={{width: 230, minHeight: "100%"}}><SellerNav /></Box>
+        <Box style={{marginTop: 20, marginLeft: 50,width: 1500}}>
           <h4>Seller Dashboard</h4>
           {/* {JSON.stringify(orders)} */}
-          {/* <Orders orders={orders} handleStatusChange={handleStatusChange} /> */}
-        </div>
-      </div>
-    </div>
+          {/* <Orders orders={orders}  /> */}
+        </Box>
+      </Box>
   );
 };
 

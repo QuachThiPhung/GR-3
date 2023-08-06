@@ -248,3 +248,33 @@ exports.createCashOrder = async (req, res) => {
   console.log("NEW ORDER SAVED", newOrder);
   res.json({ ok: true });
 };
+
+exports.upgradeSeller = async (req, res) => {
+  const userAddress = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { 
+      role: "seller",
+      name: req.body.name,
+      cardDetail: req.body.cardDetail,
+      address: req.body.address,
+    },
+    { new: true }
+  ).exec();
+
+  res.json({ ok: true });
+};
+
+exports.updateInfoUser = async (req,res) => {
+  const userAddress = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { 
+      role:req.body.role,
+      phoneNumber: req.body.phoneNumber,
+      name: req.body.name,
+      address: req.body.address,
+    },
+    { new: true }
+  ).exec();
+
+  res.json({ ok: true });
+}

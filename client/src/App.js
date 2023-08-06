@@ -40,6 +40,11 @@ import SellerRoute from "./components/routes/SellerRoute";
 import SellerDashboard from "./pages/seller/SellerDashboard";
 import SellerProductCreate from "./pages/seller/product/SellerProductCreate";
 import AllSellerProducts from "./pages/seller/product/AllSellerProducts";
+import UpgradeSeller from "./pages/user/UpgradeSeller";
+import AdminUserInfo from "./pages/admin/user/AdminUserInfo";
+import Footer from "./components/nav/Footer";
+import AdminPassword from "./pages/admin/Password";
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -78,6 +83,7 @@ const App = () => {
       <ToastContainer />
       <SideDrawer />
       <Header />
+      <div className="position-relative">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -87,7 +93,10 @@ const App = () => {
           <Route path="/user/history" element={<UserRoute><History /></UserRoute>} />
           <Route path="/user/password" element={<UserRoute><Password /></UserRoute>} />
           <Route path="/user/wishlist" element={<UserRoute><Wishlist /></UserRoute>} />
+          <Route path="/user/upgrade-seller" element={<UserRoute><UpgradeSeller /></UserRoute>} />
           <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/password" element={<AdminRoute><AdminPassword /></AdminRoute>} />
+          {/* <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboardv2/></AdminRoute>} /> */}
           <Route path="/admin/category" element={<AdminRoute><CategoryCreate /></AdminRoute>} />
           <Route path="/admin/category/:slug" element={<AdminRoute><CategoryUpdate /></AdminRoute>} />
           <Route path="/admin/sub" element={<AdminRoute><SubCreate /></AdminRoute>} />
@@ -107,7 +116,14 @@ const App = () => {
           <Route path="/seller/products" element={<SellerRoute><AllSellerProducts /></SellerRoute>} />
           <Route path="/seller/product/:slug" element={<SellerRoute><ProductUpdate /></SellerRoute>} />
           <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>} />
+   
+
+        /*admin v2 */
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard/></AdminRoute>} />
+          <Route path="/admin/user/info" element={<AdminRoute><AdminUserInfo/></AdminRoute>}/>
         </Routes>
+        </div>
+        <Footer />
       </BrowserRouter>
     </>
   );

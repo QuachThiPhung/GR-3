@@ -42,22 +42,9 @@ exports.upload = async (req, res) => {
 };
 
 exports.remove = (req, res) => {
-  const { role } = req.user;
-  if (role === "admin") {
-    adminCheck(req, res);
-    let image_id = req.body.public_id;
-
-    cloudinary.uploader.destroy(image_id, (err, result) => {
-      if (err) return res.json({ success: false, err });
-      res.send("ok");
-    });
-  } else if (role === "seller") {
-    sellerCheck(req, res);
-    let image_id = req.body.public_id;
-
-    cloudinary.uploader.destroy(image_id, (err, result) => {
-      if (err) return res.json({ success: false, err });
-      res.send("ok");
-    });
-  }
+  let image_id = req.body.public_id;
+  cloudinary.uploader.destroy(image_id, (err, result) => {
+    if (err) return res.json({ success: false, err });
+    res.send("ok");
+  });
 };

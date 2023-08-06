@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchOutlined } from "@ant-design/icons";
+import { TextField } from "@material-ui/core";
+import "../css/Search.css"
 // import { DropdownButton, Dropdown } from "react-bootstrap";
 
 const Search = () => {
@@ -25,22 +27,20 @@ const Search = () => {
   };
 
   return (
-    <form className="form-inline my-2 my-lg-0" onSubmit={handleSubmit}>
-      {/* <DropdownButton id="dropdown-basic-button" title={searchCategoryToggle}>
-        <Dropdown.Item onClick={() => setSearchCategoryToggle("All")}>All</Dropdown.Item>
-        {categories.map((category, id) => (
-          <Dropdown.Item key={id} onClick={() => setSearchCategoryToggle(category.name)}>{category.name}</Dropdown.Item>
-        ))}
-      </DropdownButton> */}
-      <input
-        onChange={handleChange}
-        type="search"
-        value={text}
-        className="form-control mr-sm-2"
-        placeholder="Search"
-      />
-      <SearchOutlined onClick={handleSubmit} style={{ cursor: "pointer" }} />
-    </form>
+    <form className="form-inline my-2 my-lg-0" onSubmit={handleSubmit} style={{ color: "#FFFFFF", backgroundColor: "#FFFFFF" }}>
+  <TextField
+    onChange={handleChange}
+    type="search"
+    variant="outlined"
+    style={{ borderRadius: 30, color: "#FFFFFF", backgroundColor: "#FFFFFF" }}
+    value={text}
+    placeholder="Search"
+    InputProps={{
+      endAdornment: <SearchOutlined onClick={handleSubmit} style={{ cursor: "pointer"}} />,
+    }}
+  />
+</form>
+
   );
 };
 
