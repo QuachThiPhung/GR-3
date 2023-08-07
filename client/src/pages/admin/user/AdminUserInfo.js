@@ -70,7 +70,7 @@ const AdminUserInfo = () => {
                     <TableCell>{item.role}</TableCell>
                     <TableCell>
                       <IconButton >
-                        <EditIcon />
+                        <EditIcon/>
                       </IconButton>
                     </TableCell>
                   </TableRow>

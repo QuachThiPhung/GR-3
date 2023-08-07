@@ -15,19 +15,18 @@ const UpgradeSeller = () => {
     const [isChecked, setIsChecked] = useState(false);
     const { user } = useSelector((state) => ({ ...state }));
 
+    const isCardValid = /^\d{16}$/.test(cardDetail);
+
+  const isFormValid = name && cardDetail && isChecked;
     const handleSubmit = async (e) => {
-        if(!cardDetail){
-            toast.error("Cart Detail not empty!");
-            return;
-        }
-        if(!name){
-            toast.error("Name not empty!");
+        if(!isCardValid){
+            toast.error("The Card input should be 16 characters!");
             return;
         }
         upgradeSeller(user.token, name, cardDetail).then((res) => {
             if (res.data.ok) {
                 setNameSaved(true);
-                toast.success("Address saved");
+                toast.success("You have been upgraded to Seller");
             }
         });
     }
@@ -37,15 +36,16 @@ const UpgradeSeller = () => {
           <Box style={{width: 800, margin: "auto", marginTop: 30, background: "#FFFFFF", borderRadius: 6, boxShadow: "0px 2px 4px rgba(168, 168, 168, 0.25)", padding: 20}}>
             <Typography style={{fontWeight: "bold"}}>User Information</Typography>
             <TextField label="Name User" fullWidth value={name} onChange={(e) => {setName(e.target.value)} } style={{marginTop: 10}} required/>
-            <TextField label="Cart Detail" fullWidth style={{marginTop: 20}} required  value={cardDetail} onChange={(e) => {setCardDetail(e.target.value)}}/>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Agree to the rules of the website" onChange={(e, checked) => {setIsChecked(checked)}} checked={isChecked}/>
+            <TextField label="Card Detail" fullWidth style={{marginTop: 20}} required  value={cardDetail} onChange={(e) => {setCardDetail(e.target.value)}}/>
+            <FormControlLabel id="isCheck" control={<Checkbox defaultChecked />} label="Agree to the rules of the website" onChange={(e, checked) => {setIsChecked(checked)}} checked={isChecked}/>
             <br/>
             <Button 
+                disabled={!isFormValid}
                 style={{
-                    background: !isChecked ? "" : "#0088FF",
-                    color: !isChecked ? "" : "#FFFFFF",
-                    border: !isChecked ? "1px solid #e0e0e0" : "", 
-                }}
+                    background: isFormValid ? '#0088FF' : '',
+                    color: isFormValid ? '#FFFFFF' : '',
+                    border: isFormValid ? '' : '1px solid #e0e0e0',
+                  }}
             onClick={handleSubmit}>
                 Save
             </Button>

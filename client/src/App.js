@@ -44,6 +44,7 @@ import UpgradeSeller from "./pages/user/UpgradeSeller";
 import AdminUserInfo from "./pages/admin/user/AdminUserInfo";
 import Footer from "./components/nav/Footer";
 import AdminPassword from "./pages/admin/Password";
+import EditUser from "./pages/admin/user/EditUser";
 
 
 const App = () => {
@@ -117,7 +118,6 @@ const App = () => {
           <Route path="/seller/product/:slug" element={<SellerRoute><ProductUpdate /></SellerRoute>} />
           <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>} />
    
-
         /*admin v2 */
           <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard/></AdminRoute>} />
           <Route path="/admin/user/info" element={<AdminRoute><AdminUserInfo/></AdminRoute>}/>
