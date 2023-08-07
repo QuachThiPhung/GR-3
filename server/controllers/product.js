@@ -366,8 +366,8 @@ const handleColor = async (req, res, color) => {
   res.json(products);
 };
 
-const handleResident = async (req, res, resident) => {
-  const products = await Product.find({ resident })
+const handleUnit = async (req, res, unit) => {
+  const products = await Product.find({ unit })
     .populate("category", "_id name")
     .populate("subs", "_id name")
     .populate("ratings.postedBy", "_id name")
@@ -385,7 +385,7 @@ exports.searchFilters = async (req, res) => {
     sub,
     shipping,
     color,
-    resident,
+    unit,
   } = req.body;
 
   if (query) {
@@ -424,8 +424,8 @@ exports.searchFilters = async (req, res) => {
     await handleColor(req, res, color);
   }
 
-  if (resident) {
-    console.log("resident ---> ", resident);
-    await handleResident(req, res, resident);
+  if (unit) {
+    console.log("unit ---> ", unit);
+    await handleUnit(req, res, unit);
   }
 };

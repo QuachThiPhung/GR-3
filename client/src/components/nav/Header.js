@@ -3,7 +3,8 @@ import {
   SettingOutlined,
   ShoppingOutlined,
   UserAddOutlined,
-  UserOutlined
+  UserOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Box, Button, Menu, MenuItem, Typography } from "@material-ui/core";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -94,7 +95,7 @@ const Header = () => {
           ><Typography style={{fontSize: 16}}>Category</Typography>
             <ArrowDropDownOutlinedIcon style={{marginLeft: 5}}/>
             </Box> */}
-              <Box>
+              {/* <Box>
                 <Box style={{ display: "flex", cursor: "pointer" }}
                   id="button-database"
                   aria-controls={openDb ? 'basic-database' : undefined}
@@ -123,11 +124,11 @@ const Header = () => {
                   <MenuItem value="db4">Database 4</MenuItem>
                   <MenuItem value="db5">Database 5</MenuItem>
                 </Menu>
-              </Box>
+              </Box> */}
               <Box style={{ marginTop: 5, color: "#FFFFFF" }}><Search /></Box>
               <Box style={{ display: "flex", cursor: "pointer" }} onClick={() => { window.location.href = "/shop" }}><ShoppingOutlined style={{ marginRight: 5, marginTop: 3, color: "#FFFFFF" }} /><Typography style={{ fontSize: 16, color: "#FFFFFF" }}>Shop</Typography></Box>
               <Box style={{ display: "flex", cursor: "pointer" }} onClick={() => { window.location.href = "/cart" }}>
-                <CartIcon style={{ marginRight: 5, width: 18, color: "#FFFFFF" }} />
+                <ShoppingCartOutlined style={{ marginRight: 5, marginTop: 3, color: "#FFFFFF" }} />
                 <Badge count={cart.length} offset={[9, 0]}>
                   <Typography style={{ fontSize: 16, color: "#FFFFFF" }}>Cart</Typography>
                 </Badge></Box>
@@ -152,7 +153,7 @@ const Header = () => {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClickAnChorEl}
-                    startIcon={<SettingOutlined />}
+                    startIcon={<SettingOutlined style={{ marginRight: 5, marginTop: 3, color: "#FFFFFF" }}/>}
                     style={{ color: "#FFFFFF" }}
                   >
                     {user.name}

@@ -105,7 +105,7 @@ console.log(p);
         </TableCell>
         <TableCell>{p.title}</TableCell>
         <TableCell>${p.price}</TableCell>
-        <TableCell>{p.resident}</TableCell>
+        <TableCell>{p.unit}</TableCell>
         <TableCell>
           {/* <select
             

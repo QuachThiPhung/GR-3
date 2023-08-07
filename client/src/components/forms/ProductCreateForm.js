@@ -18,7 +18,7 @@ const ProductCreateForm = ({
   subOptions,
   showSub,
   handleChangeColor,
-  handleChangeResident,
+  handleChangeUnit,
   handleChangeSub,
   handleChangeShipping
 
@@ -35,9 +35,9 @@ const ProductCreateForm = ({
     quantity,
     images,
     colors,
-    residents,
+    units,
     color,
-    resident,
+    unit,
   } = values;
   console.log(subOptions);
   return (
@@ -117,17 +117,17 @@ const ProductCreateForm = ({
               </Select>
             </FormControl>
             <FormControl fullWidth style={{ marginLeft: 12 }}>
-              <InputLabel id="demo-simple-select-label">Resident</InputLabel>
+              <InputLabel id="demo-simple-select-label">Unit</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={resident}
-                onChange={handleChangeResident}
-                label="Resident"
+                value={unit}
+                onChange={handleChangeUnit}
+                label="Unit"
                 required
               >
-                {residents.map((c) => (
+                {units.map((c) => (
                   <MenuItem key={c} value={c}>{c}</MenuItem>
                 ))}
               </Select>
@@ -245,10 +245,10 @@ const ProductCreateForm = ({
         </div>
 
         <div className="form-group">
-          <label>Resident</label>
-          <select name="resident" className="form-control" onChange={handleChange}>
+          <label>Unit</label>
+          <select name="unit" className="form-control" onChange={handleChange}>
             <option>Please select</option>
-            {residents.map((b) => (
+            {units.map((b) => (
               <option key={b} value={b}>
                 {b}
               </option>

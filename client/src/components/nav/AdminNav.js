@@ -7,7 +7,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import CategoryIcon from '@mui/icons-material/Category';
 import InventoryIcon from '@mui/icons-material/Inventory';
 const AdminNav = () => (
-  <nav style={{backgroundColor: "#182537", height: "100%"}}>
+  <nav style={{backgroundColor: "#232f3e", height: "100%", paddingTop: 15}}>
     <ul className="nav flex-column">
       <li className="nav-item">
         <Link to="/admin/dashboard" className="nav-link" style={{color: "#FFFFFF"}}>

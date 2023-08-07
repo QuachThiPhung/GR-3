@@ -22,9 +22,9 @@ const initialState = {
   quantity: "",
   images: [],
   colors: ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Gray", "Brown", "Cyan", "Navy"],
-  residents: ["Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"],
+  units: ["Piece", "Kg", "Lb", "Liter", "Pack", "Bottle", "Ounce" ],
   color: "",
-  resident: "",
+  unit: "",
 };
 
 const ProductCreate = () => {
@@ -68,8 +68,8 @@ const ProductCreate = () => {
       toast.error(`Quantity not empty`);
       return;
     }
-    if(!values.resident){
-      toast.error(`Resident not empty`);
+    if(!values.unit){
+      toast.error(`Unit not empty`);
       return;
     }
     if(!values.shipping){
@@ -103,8 +103,8 @@ const ProductCreate = () => {
     setValues({ ...values, color: e.target.value });
     // console.log(e.target.name, " ----- ", e.target.value);
   };
-  const handleChangeResident = (e) => {
-    setValues({ ...values, resident: e.target.value});
+  const handleChangeUnit = (e) => {
+    setValues({ ...values, unit: e.target.value});
     // console.log(e.target.name, " ----- ", e.target.value);
   };
   const handleChangeSub = (e) => {
@@ -181,7 +181,7 @@ const ProductCreate = () => {
               subOptions={subOptions}
               showSub={showSub}
               handleChangeColor={handleChangeColor}
-              handleChangeResident={handleChangeResident}
+              handleChangeUnit={handleChangeUnit}
               handleChangeSub={handleChangeSub}
               handleChangeShipping={handleChangeShipping}
             />

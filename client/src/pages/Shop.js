@@ -19,6 +19,7 @@ import { getSubs } from "../functions/sub";
 import ProductCardV2 from "../components/cards/ProductCartV2";
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 import ViewModuleOutlinedIcon from '@mui/icons-material/ViewModuleOutlined';
+import Footer from "../components/nav/Footer";
 
 const { SubMenu, ItemGroup } = Menu;
 
@@ -33,10 +34,10 @@ const Shop = () => {
   const [subs, setSubs] = useState([]);
   const [sub, setSub] = useState("");
   const [typeShow, setTypeShow] = useState(false);
-  const [residents, setResidents] = useState([
-    "Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"
+  const [units, setUnits] = useState([
+    "Piece", "Kg", "Lb", "Liter", "Pack", "Bottle", "Ounce"
   ]);
-  const [resident, setResident] = useState("");
+  const [unit, setUnit] = useState("");
   const [colors, setColors] = useState([
     "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Gray", "Brown", "Cyan", "Navy"
   ]);
@@ -97,7 +98,7 @@ const Shop = () => {
     setPrice(value);
     setStar("");
     setSub("");
-    setResident("");
+    setUnit("");
     setColor("");
     setShipping("");
     setTimeout(() => {
@@ -133,7 +134,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setStar("");
     setSub("");
-    setResident("");
+    setUnit("");
     setColor("");
     setShipping("");
     // console.log(e.target.value);
@@ -165,7 +166,7 @@ const Shop = () => {
     setCategoryIds([]);
     setStar(num);
     setSub("");
-    setResident("");
+    setUnit("");
     setColor("");
     setShipping("");
     fetchProducts({ stars: num });
@@ -204,28 +205,28 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setResident("");
+    setUnit("");
     setColor("");
     setShipping("");
     fetchProducts({ sub });
   };
 
-  // 7. show products based on resident name
-  const showResidents = () =>
-    residents.map((b) => (
+  // 7. show products based on unit name
+  const showUnits = () =>
+    units.map((b) => (
       <Radio
         key={b}
         value={b}
         name={b}
-        checked={b === resident}
-        onChange={handleResident}
+        checked={b === unit}
+        onChange={handleUnit}
         className="pb-1 pl-4 pr-4"
       >
         {b}
       </Radio>
     ));
 
-  const handleResident = (e) => {
+  const handleUnit = (e) => {
     setSub("");
     dispatch({
       type: "SEARCH_QUERY",
@@ -235,9 +236,9 @@ const Shop = () => {
     setCategoryIds([]);
     setStar("");
     setColor("");
-    setResident(e.target.value);
+    setUnit(e.target.value);
     setShipping("");
-    fetchProducts({ resident: e.target.value });
+    fetchProducts({ unit: e.target.value });
   };
 
   // 8. show products based on color
@@ -264,7 +265,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setResident("");
+    setUnit("");
     setColor(e.target.value);
     setShipping("");
     fetchProducts({ color: e.target.value });
@@ -302,7 +303,7 @@ const Shop = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
     setStar("");
-    setResident("");
+    setUnit("");
     setColor("");
     setShipping(e.target.value);
     fetchProducts({ shipping: e.target.value });
@@ -339,7 +340,7 @@ const Shop = () => {
                   range
                   value={price}
                   onChange={handleSlider}
-                  max="4999"
+                  max="200"
                 />
               </div>
             </SubMenu>
@@ -391,20 +392,20 @@ const Shop = () => {
               </div>
             </SubMenu>
 
-            {/* residents */}
+            {/* units */}
             <SubMenu
               key="5"
               title={
                 <Box style={{display: "flex"}}>
                   <WhereToVoteOutlinedIcon style={{marginTop: 4, marginRight: 5, color: "#0088FF"}}/> 
                   <Typography variant="h6">
-                  Residents
+                  Units
                  </Typography>
                 </Box>
               }
             >
               <div style={{ maringTop: "-10px" }} className="pr-5">
-                {showResidents()}
+                {showUnits()}
               </div>
             </SubMenu>
 
@@ -469,7 +470,6 @@ const Shop = () => {
         </div>
       </div>
       </Box>
-        
     </div>
   );
 };

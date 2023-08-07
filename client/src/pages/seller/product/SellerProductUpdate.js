@@ -21,9 +21,9 @@ const initialState = {
   quantity: "",
   images: [],
   colors: ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Gray", "Brown", "Cyan", "Navy"],
-  residents: ["Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"],
+  units: ["Piece", "Kg", "Lb", "Liter", "Pack", "Bottle", "Ounce" ],
   color: "",
-  resident: "",
+  unit: "",
 };
 
 const SellerProductUpdate = ({ match }) => {

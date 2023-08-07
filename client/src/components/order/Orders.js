@@ -124,7 +124,7 @@ const Orders = () => {
                       <TableHeaderCell1>Title</TableHeaderCell1>
                       <TableHeaderCell1>Color</TableHeaderCell1>
                       <TableHeaderCell1 >Count</TableHeaderCell1>
-                      <TableHeaderCell1 >Resident</TableHeaderCell1>
+                      <TableHeaderCell1 >Unit</TableHeaderCell1>
                       <TableHeaderCell1 >Price</TableHeaderCell1>
                       <TableHeaderCell1 >Shipping</TableHeaderCell1>
                     </TableRow>
@@ -138,7 +138,7 @@ const Orders = () => {
                         <TableCell >{productRow.color}</TableCell>
                         <TableCell>{productRow.count}</TableCell>
                         
-                        <TableCell >{productRow.product.resident}</TableCell>
+                        <TableCell >{productRow.product.unit}</TableCell>
                         <TableCell >{productRow.product.price}</TableCell>
                         <TableCell >
                         {productRow.product.shipping}

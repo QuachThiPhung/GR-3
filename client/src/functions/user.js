@@ -18,8 +18,8 @@ export const getUserCart = async (authtoken) =>
     },
   });
 
-export const upgradeSeller = async (authtoken, name, cardDetail) => 
-  await axios.post(`${process.env.REACT_APP_API}/user/upgrade-seller`, 
+export const upgradeSeller = async (authtoken, name, cardDetail) =>
+  await axios.post(`${process.env.REACT_APP_API}/user/upgrade-seller`,
     { name, cardDetail },
     {
       headers: {
@@ -126,13 +126,14 @@ export const updateUser = async (
 ) =>
   await axios.post(
     `${process.env.REACT_APP_API}/user/information`,
-    { user},
+    { ...user },
     {
       headers: {
         authtoken,
       },
     }
   );
+
 export const getUsers = async (authtoken) =>
   await axios.get(`${process.env.REACT_APP_API}/admin/users`, {
     headers: {

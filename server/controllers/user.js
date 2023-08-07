@@ -272,6 +272,7 @@ exports.updateInfoUser = async (req,res) => {
       phoneNumber: req.body.phoneNumber,
       name: req.body.name,
       address: req.body.address,
+      cardDetail: req.body.cardDetail
     },
     { new: true }
   ).exec();

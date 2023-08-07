@@ -45,6 +45,7 @@ import AdminUserInfo from "./pages/admin/user/AdminUserInfo";
 import Footer from "./components/nav/Footer";
 import AdminPassword from "./pages/admin/Password";
 import EditUser from "./pages/admin/user/EditUser";
+import UserInfo from "./pages/user/UserInfo";
 
 
 const App = () => {
@@ -91,6 +92,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register/complete" element={<RegisterComplete />}/>
           <Route path="/forgot/password" element={<ForgotPassword />} />
+          <Route path="/user/information" element={<UserRoute><UserInfo /></UserRoute>} />
           <Route path="/user/history" element={<UserRoute><History /></UserRoute>} />
           <Route path="/user/password" element={<UserRoute><Password /></UserRoute>} />
           <Route path="/user/wishlist" element={<UserRoute><Wishlist /></UserRoute>} />
@@ -123,7 +125,6 @@ const App = () => {
           <Route path="/admin/user/info" element={<AdminRoute><AdminUserInfo/></AdminRoute>}/>
         </Routes>
         </div>
-        <Footer />
       </BrowserRouter>
     </>
   );

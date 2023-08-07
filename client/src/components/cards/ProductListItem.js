@@ -9,7 +9,7 @@ const ProductListItems = ({ product }) => {
     subs,
     shipping,
     color,
-    resident,
+    unit,
     quantity,
     sold,
     // creator
@@ -59,9 +59,9 @@ const ProductListItems = ({ product }) => {
       </Typography>
 
       <Typography>
-      <span style={{fontWeight: "bold", fontSize: 14}}>Resident: {" "}</span>
+      <span style={{fontWeight: "bold", fontSize: 14}}>Unit: {" "}</span>
         <span className="label label-default label-pill pull-xs-right">
-          {resident}
+          {unit}
         </span>
       </Typography>
 

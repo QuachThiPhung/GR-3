@@ -54,9 +54,9 @@ const productSchema = new mongoose.Schema(
       type: String,
       enum: ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Gray", "Brown", "Cyan", "Navy"],
     },
-    resident: {
+    unit: {
       type: String,
-      enum: ["Tay Ho", "Ba Dinh", "Hoan Kiem", "Dong Da", "Cau Giay", "Hai Ba Trung", "Hoang Mai", "Long Bien"],
+      enum: ["Piece", "Kg", "Lb", "Liter", "Pack", "Bottle", "Ounce" ],
     },
     creator: {
       type: ObjectId,

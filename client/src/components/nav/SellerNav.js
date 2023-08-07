@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SellerNav = () => (
-  <nav style={{backgroundColor: "#182537", height: "100%"}}>
+  <nav style={{backgroundColor: "#232f3e", height: "100%", paddingTop: 15}}>
     <ul className="nav flex-column">
       <li className="nav-item">
         <Link to="/seller/dashboard" className="nav-link"  style={{color: "#FFFFFF"}}>
