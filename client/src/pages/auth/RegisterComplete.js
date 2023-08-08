@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createOrUpdateUser } from "../../functions/auth";
 import Footer from "../../components/nav/Footer";
+import { Box } from "@material-ui/core";
 
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
