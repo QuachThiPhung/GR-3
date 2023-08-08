@@ -61,7 +61,8 @@ const Cart = () => {
     </Table>
   );
   return (
-    <div className="container-fluid pt-2" style={{marginTop: 50}}>
+    <Box style={{height: "100%"}}>
+      <div className="container-fluid pt-2" style={{marginTop: 50}}>
       <Box style={{display: "flex",  margin: "auto", width: 1600}}>
       <Box style={{width: 1000, background: "#FFFFFF", padding: 20, borderRadius: 6, marginRight: 50, boxShadow: "0px 2px 4px rgba(168, 168, 168, 0.25)"}}>
       <Typography style={{fontWeight: "bold", fontSize: 16}}>Cart / {cart.length} Product</Typography>
@@ -133,10 +134,12 @@ const Cart = () => {
       </Box>
       </Box>
       </Box>
-      {/* <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
-        <Footer />
-      </Box> */}
     </div>
+
+    <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
+        <Footer />
+      </Box>
+    </Box>
   );
 };
 

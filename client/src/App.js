@@ -85,7 +85,7 @@ const App = () => {
       <ToastContainer />
       <SideDrawer />
       <Header />
-      <div className="position-relative">
+      <div >
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
