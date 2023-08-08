@@ -13,6 +13,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Box, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import { Button } from "antd";
+import Footer from "../components/nav/Footer";
 
 const Checkout = ({ }) => {
   const [products, setProducts] = useState([]);
@@ -231,6 +232,10 @@ const Checkout = ({ }) => {
             </Button>
           </Box>
         </Box>
+        
+     <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
+        <Footer />
+      </Box>
     </Box>
   );
 };

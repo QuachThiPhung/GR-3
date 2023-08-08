@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
+import Footer from "../../components/nav/Footer";
 
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -53,7 +54,8 @@ const Register = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
+    <Box>
+      <div className="container p-5">
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <Box style={{width: "100%", background: "#FFFFFF", padding: 20, borderRadius: 6, boxShadow: "0px 2px 4px rgba(168, 168, 168, 0.25)"}}>
@@ -63,6 +65,10 @@ const Register = ({ history }) => {
         </div>
       </div>
     </div>
+    <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
+    <Footer />
+  </Box>
+    </Box>
   );
 };
 

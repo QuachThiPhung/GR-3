@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { createOrUpdateUser } from "../../functions/auth";
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
+import Footer from "../../components/nav/Footer";
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -157,7 +158,8 @@ const Login = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
+    <Box>
+      <div className="container p-5">
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <Box style={{width: "100%", background: "#FFFFFF", borderRadius: 6, padding: 20, boxShadow: "0px 2px 4px rgba(168, 168, 168, 0.25)"}}>
@@ -189,6 +191,10 @@ const Login = ({ history }) => {
         </div>
       </div>
     </div>
+    <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
+    <Footer />
+  </Box>
+    </Box>
   );
 };
 

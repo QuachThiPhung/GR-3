@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createOrUpdateUser } from "../../functions/auth";
+import Footer from "../../components/nav/Footer";
 
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -101,7 +102,8 @@ const RegisterComplete = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
+    <Box>
+      <div className="container p-5">
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <h4>Register Complete</h4>
@@ -109,6 +111,10 @@ const RegisterComplete = ({ history }) => {
         </div>
       </div>
     </div>
+      <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
+    <Footer />
+      </Box>
+    </Box>
   );
 };
 
