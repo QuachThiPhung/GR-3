@@ -67,7 +67,7 @@ const Register = ({ history }) => {
     </div>
     <Box style={{ position: "absolute", bottom: 0, zIndex: 100, width: "100%", left: 0 }}>
     <Footer />
-  </Box>
+      </Box>
     </Box>
   );
 };

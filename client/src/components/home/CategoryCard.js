@@ -33,7 +33,7 @@ const CategoryCard = ({handleCategory}) => {
             <Grid xs={3} item key={index} className="border-card" onClick={() => {window.location.href = `/category/${item.slug}`}} style={{cursor: "pointer"}}>
             <Box style={{padding: 10, width: "100%"}}>
               <Box style={{width: 110, height: 110, margin: "auto"}}>
-                <img style={{width: 110, height: 110}} src={Category} alt="camera" />
+                <img style={{width: 110, height: 110}} src={item.images[0].url} alt="camera" />
               </Box>
               <Box style={{width: "100%", textAlign: "center"}}>
                 <Typography style={{fontWeight: "bold", lineHeight: "1.2"}} >{item.name}</Typography>
