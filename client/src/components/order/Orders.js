@@ -133,15 +133,15 @@ const Orders = () => {
                     {row.products.map((productRow) => (
                       <TableRow >
                         <TableCell component="th" scope="row">
-                          {productRow.product.title}
+                          {productRow.product?.title}
                         </TableCell>
-                        <TableCell >{productRow.color}</TableCell>
+                        <TableCell >{productRow?.color}</TableCell>
                         <TableCell>{productRow.count}</TableCell>
                         
-                        <TableCell >{productRow.product.unit}</TableCell>
-                        <TableCell >{productRow.product.price}</TableCell>
+                        <TableCell >{productRow.product?.unit}</TableCell>
+                        <TableCell >{productRow.product?.price}</TableCell>
                         <TableCell >
-                        {productRow.product.shipping}
+                        {productRow.product?.shipping}
                         </TableCell>
                       </TableRow>
                     ))}
