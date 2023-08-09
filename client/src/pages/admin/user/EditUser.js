@@ -40,7 +40,6 @@ const EditUser = ({open,data, onClose,load}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // console.log(password);
         updateUser(user.token, users)
           .then(() => {
             setLoading(false);
@@ -61,7 +60,7 @@ const EditUser = ({open,data, onClose,load}) => {
     const handleDelete = async (e) =>{
         console.log("check",data);
         e.preventDefault();
-        deleteUser(data._id,user.token)
+        deleteUser(data._id, user.token)
         .then(() => {
             setLoading(false);
             toast.success("Delete compelete");
@@ -82,7 +81,7 @@ const EditUser = ({open,data, onClose,load}) => {
                 maxWidth="sm"
                 fullWidth="true"
             >
-                <DialogTitle> Edit Role</DialogTitle>
+                <DialogTitle> Edit User Information</DialogTitle>
                 <hr />
                 <DialogContent>
                     <Box marginTop={"-24px"}>
@@ -149,7 +148,7 @@ const EditUser = ({open,data, onClose,load}) => {
                                         <MenuItem value={'seller'}>
                                             Seller
                                         </MenuItem>
-                                        <MenuItem value={'buyer '}>
+                                        <MenuItem value={'buyer'}>
                                             Buyer
                                         </MenuItem>
                                         {users.role === "admin"  && (
@@ -157,11 +156,6 @@ const EditUser = ({open,data, onClose,load}) => {
                                             Admin
                                         </MenuItem>
                                         )}
-                                        {users.role === "subscriber" &&
-                                            (<MenuItem value={'subscriber'}>
-                                            Subscriber
-                                        </MenuItem>)
-                                        }
                                     </Select>
                                 </FormControl>
                             </Box>

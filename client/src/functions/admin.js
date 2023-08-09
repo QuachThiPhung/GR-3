@@ -30,7 +30,7 @@ export const changeStatus = async (orderId, orderStatus, authtoken) =>
     }
   );
 
-  export const deleteUser = async ( userId,authtoken) =>
+  export const deleteUser = async (userId, authtoken) =>
   await axios.put(
     `${process.env.REACT_APP_API}/admin/delete-user`,
     { userId },

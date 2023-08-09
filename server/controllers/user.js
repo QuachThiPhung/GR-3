@@ -266,7 +266,7 @@ exports.upgradeSeller = async (req, res) => {
 
 exports.updateInfoUser = async (req,res) => {
   const userAddress = await User.findOneAndUpdate(
-    { email: req.user.email },
+    { email: req.body.email },
     { 
       role:req.body.role,
       phoneNumber: req.body.phoneNumber,

@@ -44,7 +44,6 @@ const AdminUserInfo = () => {
     setOpen(!open)
    };
 
-
   return (
     <>
       <Box style={{ width: "100%", display: "flex", minHeight: "820px" }}>
@@ -88,6 +87,7 @@ const AdminUserInfo = () => {
           open={open}
           data={data}
           onClose={() => {setOpen(false)}}
+          load={() => {initUsers()}}
           />
       </Box>
      
