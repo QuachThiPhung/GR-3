@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
+import { TextareaAutosize } from "@material-ui/core";
 const { Option } = Select;
 
 const ProductCreateForm = ({
@@ -55,7 +56,7 @@ const ProductCreateForm = ({
             />
 
             <FormControl fullWidth style={{ marginLeft: "24px" }}>
-              <InputLabel id="demo-simple-select-label">shipping</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{marginTop: -7}}>shipping</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
@@ -72,7 +73,7 @@ const ProductCreateForm = ({
           </Box>
           <Box display={"flex"} padding={2} height={30} marginTop={5}>
             <FormControl fullWidth >
-              <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-amount" style={{marginTop: -7}}>Price</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-amount"
                 endAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -102,7 +103,7 @@ const ProductCreateForm = ({
           <Box display={"flex"} padding={2} height={30} marginTop={5} >
 
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Color</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{marginTop: -7}}>Color</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
@@ -117,7 +118,7 @@ const ProductCreateForm = ({
               </Select>
             </FormControl>
             <FormControl fullWidth style={{ marginLeft: 12 }}>
-              <InputLabel id="demo-simple-select-label">Unit</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{marginTop: -7}}>Unit</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
@@ -135,7 +136,7 @@ const ProductCreateForm = ({
           </Box>
           <Box padding={2} marginTop={5}>
             <FormControl fullWidth >
-              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{marginTop: -7}}>Category</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
@@ -153,7 +154,7 @@ const ProductCreateForm = ({
               </Select>
             </FormControl>
             {showSub ? (<FormControl fullWidth style={{ marginTop: 12 }}>
-              <InputLabel id="demo-simple-select-label">Sub Categories</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{marginTop: -7}}>Sub Categories</InputLabel>
               <Select
                 size="small"
                 labelId="demo-simple-select-label"
@@ -171,17 +172,18 @@ const ProductCreateForm = ({
 
           </Box>
         </Paper>
-        <Paper style={{ height: "135px", marginTop: 24 }}>
+        <Paper style={{ minHeight: "150px", marginTop: 24 }}>
           <Box display="flex" padding={2} paddingLeft={0}>
-            <TextField
+            <TextareaAutosize
               fullWidth
               id="outlined-multiline-static"
-              label="Description"
+              title="Description"
               multiline  // Set multiline prop to true
               rows={5}   // Set the number of rows you want the input to display
               name="description"
               onChange={handleChange}
-              style={{ marginLeft: 12 }}
+              style={{ marginLeft: 12, width: "100%", padding: 10 }}
+              placeholder="Description"
               height={200}
             />
           </Box>
