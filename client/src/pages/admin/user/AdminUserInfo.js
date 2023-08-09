@@ -39,6 +39,11 @@ const AdminUserInfo = () => {
       });
   };
 
+  const handleChange = (data) => {
+    setData(data);
+    setOpen(!open)
+   };
+
 
   return (
     <>
@@ -69,7 +74,7 @@ const AdminUserInfo = () => {
                     <TableCell>{item.phoneNumber}</TableCell>
                     <TableCell>{item.role}</TableCell>
                     <TableCell>
-                      <IconButton >
+                      <IconButton onClick={()=>handleChange(item)}>
                         <EditIcon/>
                       </IconButton>
                     </TableCell>
