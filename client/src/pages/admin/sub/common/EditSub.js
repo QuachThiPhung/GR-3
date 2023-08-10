@@ -15,7 +15,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getCategories } from "../../../../functions/category";
-import { updateSub } from "../../../../functions/sub";
+import { updateSub, removeSub } from "../../../../functions/sub";
 const EditSub = ({ open, onClose, data, initData, category }) => {
   const [name, setName] = React.useState(undefined);
   const { user } = useSelector((state) => ({ ...state }));
@@ -60,6 +60,19 @@ const EditSub = ({ open, onClose, data, initData, category }) => {
         if (err.response.status === 400) toast.error(err.response.data);
       });
   };
+
+  const handleDelete = () => {
+    removeSub(initData.slug, user.token).then((res) => {
+      toast.success(`SUB CATEGORY DELETE`);
+      data();
+      onClose();
+    })
+    .catch((err) => {
+      console.log(err);
+      if (err.response.status === 400) toast.error(err.response.data);
+    });
+  }
+
   return (
     <div>
       <Dialog
@@ -106,7 +119,10 @@ const EditSub = ({ open, onClose, data, initData, category }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" color="error" onClick={() => onClose()}>
+          <Button variant="contained" color="error" onClick={() => handleDelete()}>
+            Delete
+          </Button>
+          <Button variant="outlined" color="error" onClick={() => onClose()}>
             Cancel
           </Button>
           <Button variant="contained" color="primary" onClick={()=>handleSubmit(name,parent)}>

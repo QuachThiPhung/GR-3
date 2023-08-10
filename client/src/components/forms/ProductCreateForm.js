@@ -110,6 +110,7 @@ const ProductCreateForm = ({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={color}
+                name="color"
                 onChange={handleChangeColor}
                 label="Color"
               >
@@ -125,6 +126,7 @@ const ProductCreateForm = ({
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={unit}
+                name="unit"
                 onChange={handleChangeUnit}
                 label="Unit"
                 required
