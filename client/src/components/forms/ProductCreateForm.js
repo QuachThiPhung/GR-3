@@ -53,6 +53,7 @@ const ProductCreateForm = ({
               fullWidth
               onChange={handleChange}
               size="small"
+              name="title"
             />
 
             <FormControl fullWidth style={{ marginLeft: "24px" }}>

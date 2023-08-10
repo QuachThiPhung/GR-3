@@ -26,3 +26,9 @@ export const createSub = async (sub, authtoken) =>
       authtoken,
     },
   });
+  export const removeSubCategory = async (slug, authtoken) =>
+  await axios.delete(`${process.env.REACT_APP_API}/sub/${slug}`, {
+    headers: {
+      authtoken,
+    },
+  });

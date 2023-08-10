@@ -93,8 +93,9 @@ const ProductCreate = () => {
         toast.error(err.response.data.err);
       });
   };
-
+  console.log(values);
   const handleChange = (e) => {
+    debugger
     setValues({ ...values, [e.target.name]: e.target.value });
     // console.log(e.target.name, " ----- ", e.target.value);
   };
