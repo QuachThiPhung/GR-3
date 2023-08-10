@@ -58,6 +58,5 @@ exports.deleteUser = async (req, res) => {
     console.error('Error deleting user:', error);
     return false;
   }
-
-  
+  res.json({ success: false, message: 'Error deleting user' });
 }

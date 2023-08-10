@@ -17,19 +17,19 @@ const AdminNav = () => (
 
       <li className="nav-item">
         <Link to="/admin/product" className="nav-link" style={{color: "#FFFFFF"}}>
-        <InventoryIcon style={{width: 16, marginTop: -3}}/>  Product
+        <InventoryIcon style={{width: 16, marginTop: -3}}/> Create Product
         </Link>
       </li>
 
       <li className="nav-item">
         <Link to="/admin/products" className="nav-link" style={{color: "#FFFFFF"}}>
-        <InventoryIcon style={{width: 16, marginTop: -3}}/>   Products
+        <InventoryIcon style={{width: 16, marginTop: -3}}/> All Products
         </Link>
       </li>
 
       <li className="nav-item">
         <Link to="/admin/category" className="nav-link" style={{color: "#FFFFFF"}}>
-        <CategoryIcon style={{width: 16, marginTop: -3}}/>  Category
+        <CategoryIcon style={{width: 16, marginTop: -3}}/> Category
         </Link>
       </li>
 
