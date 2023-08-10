@@ -48,7 +48,8 @@ const ProductCreateForm = ({
           <Box display={"flex"} padding={2} height={30}>
             <TextField
               id="outlined-basic" variant="outlined"
-              label="Title"
+              label="title"
+              name="title"
               type="text"
               fullWidth
               onChange={handleChange}
@@ -181,6 +182,7 @@ const ProductCreateForm = ({
               multiline  // Set multiline prop to true
               rows={5}   // Set the number of rows you want the input to display
               name="description"
+              value={description}
               onChange={handleChange}
               style={{ marginLeft: 12, width: "100%", padding: 10 }}
               placeholder="Description"
