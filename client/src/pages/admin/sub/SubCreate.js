@@ -27,6 +27,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import AddcSub from "./common/AddSub";
 import AddSub from "./common/AddSub";
 import EditSub from "./common/EditSub";
+import moment from "moment";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -116,6 +117,14 @@ const SubCreate = () => {
       fontFamily: "sans-serif",
     },
   }))(TableCell);
+
+  const formatDateTime = (date,format) => {
+    if (moment(date).isValid()) {
+      return moment(date).format(format || "DD-MM-YYYY");
+    }
+    return null;
+  }
+
   return (
     <>
       <Box style={{ width: "100%", display: "flex", minHeight: "820px" }}>
@@ -181,7 +190,7 @@ const SubCreate = () => {
                             {findCategories(x.parent)}
                           </StyledTableCell> */}
                           <StyledTableCell align="right" width={150}>
-                            {new Date(x.createdAt).toLocaleString()}
+                            {formatDateTime(new Date(x.createdAt))}
                           </StyledTableCell>
                         </StyledTableRow>
                       ))}
